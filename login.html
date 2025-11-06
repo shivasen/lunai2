@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal Login - Lunai</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="https://ik.imagekit.io/ivfldnjuy/lunailogoicon.ico?updatedAt=1759393439622">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="particles-container"></div>
+    <section class="auth-section">
+        <div class="auth-container">
+            <a href="/" class="footer-logo" style="margin-bottom: 1rem; display: inline-block;">LUNAI</a>
+            <h2>Client Portal</h2>
+            <p>Access your documents and project status.</p>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="input-glow"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="input-glow"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Sign In</span>
+                        <div class="btn-loading">
+                            <div class="cosmic-spinner"></div>
+                        </div>
+                    </button>
+                </div>
+            </form>
+            <div id="authMessage" class="auth-message"></div>
+        </div>
+    </section>
+    <script type="module" src="auth.js"></script>
+</body>
+</html>

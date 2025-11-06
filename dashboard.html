@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Lunai Client Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="https://ik.imagekit.io/ivfldnjuy/lunailogoicon.ico?updatedAt=1759393439622">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="particles-container"></div>
+    <header class="dashboard-header">
+        <div class="container">
+            <a href="/" class="footer-logo">LUNAI</a>
+            <button id="logoutBtn" class="secondary-btn">Logout</button>
+        </div>
+    </header>
+    <section class="dashboard-section">
+        <div class="container">
+            <h1 id="welcomeMessage">Loading Portal...</h1>
+            <div id="dashboardContent" class="dashboard-content">
+                <!-- Content will be dynamically injected by auth.js -->
+                <div class="cosmic-spinner-container">
+                    <div class="cosmic-spinner"></div>
+                    <p>Preparing your cosmic dashboard...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="auth.js"></script>
+</body>
+</html>

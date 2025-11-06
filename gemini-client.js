@@ -12,7 +12,7 @@ export class GeminiClient {
 
     init() {
         if (!this.apiKey || this.apiKey === 'YOUR_API_KEY') {
-            console.error("Gemini API key is missing. Please add it to your .env file.");
+            console.warn("Gemini API key is missing or is a placeholder. The AI Strategist feature will be disabled. Please add your VITE_GEMINI_API_KEY to a .env file to enable it.");
             this.isInitialized = false;
             return;
         }

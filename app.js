@@ -1,4 +1,4 @@
-import { createIcons, MapPin, Phone } from 'lucide';
+import { createIcons, MapPin, Phone, Instagram, User } from 'lucide';
 import { GeminiClient } from './gemini-client.js';
 import { translationService } from './translation-service.js';
 
@@ -655,7 +655,7 @@ class EnhancedLunaiExperience {
 
   initLucideIcons() {
     if (typeof createIcons !== 'undefined') {
-        createIcons({ icons: { MapPin, Phone } });
+        createIcons({ icons: { MapPin, Phone, Instagram, User } });
     }
   }
 
@@ -1675,8 +1675,11 @@ class EnhancedLunaiExperience {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM loaded, initializing Final Enhanced Lunai Experience with AI Strategist');
-  new EnhancedLunaiExperience();
+  // Check if we are on the main page before initializing the full experience
+  if (document.querySelector('#hero')) {
+    console.log('DOM loaded, initializing Final Enhanced Lunai Experience with AI Strategist');
+    new EnhancedLunaiExperience();
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
