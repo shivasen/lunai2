@@ -2657,6 +2657,25 @@ body.lang-ta textarea::placeholder {
     color: var(--error-red);
 }
 
+.auth-link {
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.auth-link a {
+    color: var(--cyan-glow);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+    filter: brightness(1.2);
+}
+
+
 /* Dashboard Styles */
 .dashboard-header {
     background: var(--glass-bg);

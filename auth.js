@@ -3,6 +3,7 @@ import { supabase } from './supabase-client.js';
 const handleAuth = async () => {
     const { data: { session } } = await supabase.auth.getSession();
     const isLoginPage = window.location.pathname.includes('login.html');
+    const isSignupPage = window.location.pathname.includes('signup.html');
     const isDashboardPage = window.location.pathname.includes('dashboard.html');
 
     if (isLoginPage) {
@@ -13,6 +14,14 @@ const handleAuth = async () => {
         setupLoginForm();
     }
 
+    if (isSignupPage) {
+        if (session) {
+            window.location.replace('/dashboard.html');
+            return;
+        }
+        setupSignupForm();
+    }
+
     if (isDashboardPage) {
         if (!session) {
             window.location.replace('/login.html');
@@ -20,6 +29,54 @@ const handleAuth = async () => {
         }
         await setupDashboard(session.user);
     }
+};
+
+const setupSignupForm = () => {
+    const signupForm = document.getElementById('signupForm');
+    if (!signupForm) return;
+
+    signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById('full_name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const messageEl = document.getElementById('authMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        setLoading(submitBtn, true);
+        showMessage(messageEl, 'Creating your account...', 'loading');
+
+        try {
+            const { data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        full_name: fullName,
+                    }
+                }
+            });
+
+            if (error) throw error;
+
+            if (data.user && data.user.identities && data.user.identities.length === 0) {
+                 throw new Error('A user with this email already exists. Please try logging in or reset your password.');
+            }
+            
+            if (data.user) {
+                showMessage(messageEl, 'Signup successful! Please check your email to verify your account.', 'success');
+                signupForm.reset();
+            } else {
+                throw new Error('An unexpected error occurred during signup.');
+            }
+
+        } catch (error) {
+            console.error('Signup error:', error);
+            showMessage(messageEl, error.message || 'An unexpected error occurred.', 'error');
+        } finally {
+            setLoading(submitBtn, false);
+        }
+    });
 };
 
 const setupLoginForm = () => {
